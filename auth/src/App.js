@@ -28,19 +28,22 @@ class App extends Component {
           />
         }
         {this.state.code &&
-          <div>
-            <span>
-              Code: {this.state.code}
-            </span>
-            <CopyToClipboard text={this.state.code}>
-              <button>Copy</button>
-            </CopyToClipboard>
-          </div>
+          <Code code={this.state.code} />
         }
       </div>
     )
   }
 }
+
+const Code = ({ code }) =>
+  <div>
+    <span>
+      Code: {code}
+    </span>
+    <CopyToClipboard text={code}>
+      <button>Copy</button>
+    </CopyToClipboard>
+  </div>
 
 class ClientId extends Component {
   state = {
