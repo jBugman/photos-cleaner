@@ -9,26 +9,29 @@ class App extends Component {
     code: null
   }
 
-  onIdChange = (id) => this.setState({ clientId: id })
+  onClientId = (id) => this.setState({ clientId: id })
 
   googleFailure = (e) => console.log(e)
 
-  googleSuccess = (e) => this.setState({ code: e.code })
+  googleSuccess = (resp) => this.setState({ code: resp.code })
 
+  // TODO: fix random 'missing client_id'
   render () {
     return (
       <div className='App'>
-        <ClientId onIdChange={this.onIdChange} />
+        <ClientId onClientId={this.onClientId} className='row' />
         {this.state.clientId &&
-          <GoogleLogin clientId={this.state.clientId}
-            buttonText='Authorize'
+          <GoogleLogin
+            clientId={this.state.clientId}
+            buttonText='[Sign In]'
+            className='g-signin2 googleButton row' // TODO: conform to branding guidelines better
             onSuccess={this.googleSuccess}
             onFailure={this.googleFailure}
             responseType='code'
           />
         }
         {this.state.code &&
-          <Code code={this.state.code} />
+          <Code code={this.state.code} className='row' />
         }
       </div>
     )
@@ -52,14 +55,14 @@ class ClientId extends Component {
 
   onSubmit = (e) => {
     e.preventDefault()
-    this.props.onIdChange(this.state.value)
+    this.props.onClientId(this.state.value)
   }
 
   onChange = (e) => this.setState({ value: e.target.value })
 
   render = () =>
     <form onSubmit={this.onSubmit}>
-      <input type='text' value={this.state.value} onChange={this.onChange} />
+      <input type='text' className='clientId' value={this.state.value} onChange={this.onChange} />
       <button type='submit'>
         Create the button
       </button>
