@@ -70,3 +70,4 @@ class ClientId extends Component {
 }
 
 export default App
+export { Code, ClientId }

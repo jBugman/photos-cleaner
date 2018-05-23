@@ -17,9 +17,13 @@
     "eject": "react-scripts eject"
   },
   "standard": {
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "env": [
+      "jest"
+    ]
   },
   "devDependencies": {
-    "babel-eslint": "^7.2.3"
+    "babel-eslint": "^7.2.3",
+    "react-test-renderer": "^16.3.2"
   }
 }
