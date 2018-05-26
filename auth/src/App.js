@@ -1,36 +1,42 @@
 import React, { Component } from 'react'
-import './App.css'
-import { GoogleLogin } from 'react-google-login'
+import { GoogleAuthorize } from 'react-google-authorize'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import './App.css'
 
 class App extends Component {
   state = {
     clientId: null,
-    code: null
+    code: null,
+    loggedIn: false
   }
 
   onClientId = (id) => this.setState({ clientId: id })
 
   googleFailure = (e) => console.log(e)
 
-  googleSuccess = (resp) => this.setState({ code: resp.code })
+  googleSuccess = (resp) => this.setState({
+    code: resp.code,
+    loggedIn: true
+  })
 
-  // TODO: fix random 'missing client_id'
   render () {
     return (
       <div className='App'>
-        <ClientId onClientId={this.onClientId} className='row' />
-        {this.state.clientId &&
-          <GoogleLogin
+        {!this.state.loggedIn &&
+          <ClientId onClientId={this.onClientId} className='row' />
+        }
+        {!this.state.loggedIn && this.state.clientId &&
+          <GoogleAuthorize
             clientId={this.state.clientId}
             buttonText='[Sign In]'
-            className='g-signin2 googleButton row' // TODO: conform to branding guidelines better
+            className='row' // TODO: conform to branding guidelines
             onSuccess={this.googleSuccess}
             onFailure={this.googleFailure}
             responseType='code'
+          // prompt='select_account'
           />
         }
-        {this.state.code &&
+        {this.state.loggedIn && this.state.code &&
           <Code code={this.state.code} className='row' />
         }
       </div>
@@ -38,8 +44,8 @@ class App extends Component {
   }
 }
 
-const Code = ({ code }) =>
-  <div>
+const Code = ({ code, className }) =>
+  <div className={className}>
     <span>
       Code: {code}
     </span>
@@ -61,7 +67,7 @@ class ClientId extends Component {
   onChange = (e) => this.setState({ value: e.target.value })
 
   render = () =>
-    <form onSubmit={this.onSubmit}>
+    <form onSubmit={this.onSubmit} className={this.props.className} >
       <input type='text' className='clientId' value={this.state.value} onChange={this.onChange} />
       <button type='submit'>
         Create the button
