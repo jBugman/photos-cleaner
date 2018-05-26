@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { GoogleAuthorize } from 'react-google-authorize'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
 import ClientId from './ClientId'
+import Auth from './Auth'
 import './App.css'
 
 class App extends Component {
@@ -30,14 +30,10 @@ class App extends Component {
           <React.Fragment>
             <ClientId onClientId={this.onClientId} />
             {this.state.clientId &&
-              <GoogleAuthorize
+              <Auth
                 clientId={this.state.clientId}
-                buttonText='[Sign In]'
-                className='row' // TODO: conform to branding guidelines
                 onSuccess={this.googleSuccess}
-                onFailure={this.googleFailure}
-                responseType='code'
-              />
+                onFailure={this.googleFailure} />
             }
           </React.Fragment>
         }
