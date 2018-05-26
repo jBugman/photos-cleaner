@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { GoogleAuthorize } from 'react-google-authorize'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import CssBaseline from '@material-ui/core/CssBaseline'
+
+import ClientId from './ClientId'
 import './App.css'
 
 class App extends Component {
@@ -21,31 +24,33 @@ class App extends Component {
 
   render () {
     return (
-      <div className='App'>
+      <React.Fragment>
+        <CssBaseline />
         {!this.state.loggedIn &&
-          <ClientId onClientId={this.onClientId} className='row' />
-        }
-        {!this.state.loggedIn && this.state.clientId &&
-          <GoogleAuthorize
-            clientId={this.state.clientId}
-            buttonText='[Sign In]'
-            className='row' // TODO: conform to branding guidelines
-            onSuccess={this.googleSuccess}
-            onFailure={this.googleFailure}
-            responseType='code'
-          // prompt='select_account'
-          />
+          <React.Fragment>
+            <ClientId onClientId={this.onClientId} />
+            {this.state.clientId &&
+              <GoogleAuthorize
+                clientId={this.state.clientId}
+                buttonText='[Sign In]'
+                className='row' // TODO: conform to branding guidelines
+                onSuccess={this.googleSuccess}
+                onFailure={this.googleFailure}
+                responseType='code'
+              />
+            }
+          </React.Fragment>
         }
         {this.state.loggedIn && this.state.code &&
-          <Code code={this.state.code} className='row' />
+          <Code code={this.state.code} />
         }
-      </div>
+      </React.Fragment>
     )
   }
 }
 
-const Code = ({ code, className }) =>
-  <div className={className}>
+const Code = ({ code }) =>
+  <div className='row'>
     <span>
       Code: {code}
     </span>
@@ -54,26 +59,5 @@ const Code = ({ code, className }) =>
     </CopyToClipboard>
   </div>
 
-class ClientId extends Component {
-  state = {
-    value: ''
-  }
-
-  onSubmit = (e) => {
-    e.preventDefault()
-    this.props.onClientId(this.state.value)
-  }
-
-  onChange = (e) => this.setState({ value: e.target.value })
-
-  render = () =>
-    <form onSubmit={this.onSubmit} className={this.props.className} >
-      <input type='text' className='clientId' value={this.state.value} onChange={this.onChange} />
-      <button type='submit'>
-        Create the button
-      </button>
-    </form>
-}
-
 export default App
-export { Code, ClientId }
+export { Code }

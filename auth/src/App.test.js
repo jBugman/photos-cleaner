@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 import renderer from 'react-test-renderer'
-import App, { Code, ClientId } from './App'
+import App, { Code } from './App'
 
 describe('App', () => {
   it('renders without crashing', () => {
@@ -26,20 +26,6 @@ describe('Code', () => {
 
   test('has a valid snapshot', () => {
     const component = renderer.create(<Code />)
-    const tree = component.toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-})
-
-describe('ClientId', () => {
-  it('renders without crashing', () => {
-    const div = document.createElement('div')
-    render(<ClientId />, div)
-    unmountComponentAtNode(div)
-  })
-
-  test('has a valid snapshot', () => {
-    const component = renderer.create(<ClientId />)
     const tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })

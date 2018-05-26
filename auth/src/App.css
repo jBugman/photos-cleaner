@@ -2,19 +2,6 @@ body {
   font-family: San Francisco,Roboto,Monaco,sans-serif;
 }
 
-.App {
-  text-align: center;
-  margin: 2em 0;
-}
-
 .row {
   margin: 10px 0 0 0;
-}
-
-.clientId {
-  width: 40em;
-}
-
-button {
-  margin: 0 10px;
 }
