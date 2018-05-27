@@ -43,8 +43,8 @@ class ClientId extends Component {
             Create auth button
           </Button>
         </CardActions>
-
-      </Card></form>
+      </Card>
+    </form>
 }
 
 export default withStyles(styles)(ClientId)

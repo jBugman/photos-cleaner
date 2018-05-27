@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
-import ClientId from './ClientId'
 import Auth from './Auth'
+import ClientId from './ClientId'
+import Code from './Code'
 import './App.css'
 
 class App extends Component {
@@ -45,15 +45,4 @@ class App extends Component {
   }
 }
 
-const Code = ({ code }) =>
-  <div className='row'>
-    <span>
-      Code: {code}
-    </span>
-    <CopyToClipboard text={code}>
-      <button>Copy</button>
-    </CopyToClipboard>
-  </div>
-
 export default App
-export { Code }
