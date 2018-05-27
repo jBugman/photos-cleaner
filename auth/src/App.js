@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Card from '@material-ui/core/Card'
+import Divider from '@material-ui/core/Divider'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
 import Auth from './Auth'
@@ -22,24 +24,29 @@ class App extends Component {
     loggedIn: true
   })
 
+  // {!this.state.loggedIn && this.state.loggedIn &&
   render () {
     return (
       <React.Fragment>
         <CssBaseline />
-        {!this.state.loggedIn &&
-          <React.Fragment>
-            <ClientId onClientId={this.onClientId} />
-            {this.state.clientId &&
+        <Card>
+          <ClientId onClientId={this.onClientId} />
+          {this.state.clientId &&
+            <React.Fragment>
+              <Divider />
               <Auth
                 clientId={this.state.clientId}
                 onSuccess={this.googleSuccess}
                 onFailure={this.googleFailure} />
-            }
-          </React.Fragment>
-        }
-        {this.state.loggedIn && this.state.code &&
-          <Code code={this.state.code} />
-        }
+            </React.Fragment>
+          }
+          {this.state.code &&
+            <React.Fragment>
+              <Divider />
+              <Code code={this.state.code} />
+            </React.Fragment>
+          }
+        </Card>
       </React.Fragment>
     )
   }

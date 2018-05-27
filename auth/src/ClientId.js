@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Button from '@material-ui/core/Button'
-import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import TextField from '@material-ui/core/TextField'
@@ -27,7 +26,7 @@ class ClientId extends Component {
 
   render = () =>
     <form onSubmit={this.onSubmit}>
-      <Card>
+      <React.Fragment>
         <CardContent>
           <TextField
             required
@@ -43,7 +42,7 @@ class ClientId extends Component {
             Create auth button
           </Button>
         </CardActions>
-      </Card>
+      </React.Fragment>
     </form>
 }
 
