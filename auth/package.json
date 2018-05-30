@@ -5,8 +5,8 @@
   "dependencies": {
     "@material-ui/core": "^1.1.0",
     "@material-ui/icons": "^1.1.0",
+    "copy-to-clipboard": "^3.0.8",
     "react": "^16.3.2",
-    "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.3.2",
     "react-google-authorize": "^1.0.3",
     "react-scripts": "1.1.4"

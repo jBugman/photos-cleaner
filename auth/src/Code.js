@@ -1,9 +1,11 @@
-import React from 'react'
-import IconButton from '@material-ui/core/IconButton'
+import React, { Component } from 'react'
 import CardContent from '@material-ui/core/CardContent'
+import IconButton from '@material-ui/core/IconButton'
+import Snackbar from '@material-ui/core/Snackbar'
 import Typography from '@material-ui/core/Typography'
+import CloseIcon from '@material-ui/icons/Close'
 import ContentCopy from '@material-ui/icons/ContentCopy'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
+import copy from 'copy-to-clipboard'
 import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
@@ -13,24 +15,60 @@ const styles = theme => ({
   }
 })
 
-// TODO: snackbar
-const Code = ({ code, classes }) => {
-  const copyLabel = 'Copy to clipboard'
-  return (
-    <CardContent>
-      <Typography variant='caption'>
-        Code:
-      </Typography>
-      <Typography component='span' className={classes.code}>
-        {code}
-      </Typography>
-      <CopyToClipboard text={code} >
-        <IconButton aria-label={copyLabel} title={copyLabel}>
-          <ContentCopy />
-        </IconButton>
-      </CopyToClipboard>
-    </CardContent>
-  )
+// TODO: how to pass all props?
+// TODO: withLabel?
+const TitledIconButton = ({ label, children, onClick = null, color = 'default' }) =>
+  <IconButton aria-label={label} title={label} onClick={onClick} color={color}>
+    {children}
+  </IconButton>
+
+const CopyButton = ({ label, onClick }) =>
+  <TitledIconButton label={label} onClick={onClick}>
+    <ContentCopy />
+  </TitledIconButton>
+
+const CloseButton = ({ label, onClick }) =>
+  <TitledIconButton label={label} onClick={onClick} color='inherit' >
+    <CloseIcon />
+  </TitledIconButton>
+
+class Code extends Component {
+  state = {
+    snackbarOpen: false
+  }
+
+  onCopy = (e) => {
+    const success = copy(this.props.code)
+    if (success) {
+      this.setState({ snackbarOpen: true })
+    }
+  }
+
+  handleClose = (event, reason) => this.setState({ snackbarOpen: false })
+
+  copyLabel = 'Copy to clipboard'
+
+  render = () => {
+    const { code, classes } = this.props
+    return (
+      <CardContent>
+        <Typography variant='caption'>
+          Code:
+        </Typography>
+        <Typography component='span' className={classes.code}>
+          {code}
+        </Typography>
+        <CopyButton label={this.copyLabel} onClick={this.onCopy} />
+        <Snackbar
+          open={this.state.snackbarOpen}
+          onClose={this.handleClose}
+          autoHideDuration={2000}
+          message={<span>Copied to clipboard</span>}
+          action={<CloseButton label='Close' onClick={this.handleClose} />}
+        />
+      </CardContent>
+    )
+  }
 }
 
 export default withStyles(styles)(Code)
