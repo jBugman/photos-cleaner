@@ -1,3 +1,4 @@
+/* eslint react/jsx-filename-extension: 0 */
 import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 import renderer from 'react-test-renderer'

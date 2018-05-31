@@ -12,40 +12,41 @@ class App extends Component {
   state = {
     clientId: null,
     code: null,
-    loggedIn: false
+    loggedIn: false,
   }
 
-  onClientId = (id) => this.setState({ clientId: id })
+  onClientId = id => this.setState({ clientId: id })
 
-  googleFailure = (e) => console.log(e)
+  googleFailure = e => console.log(e)
 
-  googleSuccess = (resp) => this.setState({
-    code: resp.code,
-    loggedIn: true
-  })
+  googleSuccess = resp =>
+    this.setState({
+      code: resp.code,
+      loggedIn: true,
+    })
 
-  // {!this.state.loggedIn && this.state.loggedIn &&
-  render () {
+  render() {
     return (
       <React.Fragment>
         <CssBaseline />
         <Card>
           <ClientId onClientId={this.onClientId} />
-          {this.state.clientId &&
+          {this.state.clientId && (
             <React.Fragment>
               <Divider />
               <Auth
                 clientId={this.state.clientId}
                 onSuccess={this.googleSuccess}
-                onFailure={this.googleFailure} />
+                onFailure={this.googleFailure}
+              />
             </React.Fragment>
-          }
-          {this.state.code &&
+          )}
+          {this.state.code && (
             <React.Fragment>
               <Divider />
               <Code code={this.state.code} />
             </React.Fragment>
-          }
+          )}
         </Card>
       </React.Fragment>
     )
