@@ -9,7 +9,7 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-google-authorize": "^1.0.3",
-    "react-scripts": "1.1.4"
+    "recompose": "^0.27.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -17,20 +17,16 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "standard": {
-    "parser": "babel-eslint",
-    "env": [
-      "jest"
-    ]
-  },
   "devDependencies": {
     "babel-eslint": "^8.1.2",
     "eslint": "^4.19.1",
     "eslint-config-frank": "git+ssh://git@github.com/frankmoney/eslint-config-frank.git",
+    "eslint-config-react-app": "^2.1.0",
     "eslint-plugin-jest": "^21.17.0",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.8.2",
     "prettier": "^1.13.3",
+    "react-scripts": "1.1.4",
     "react-test-renderer": "^16.3.2"
   }
 }

@@ -3,9 +3,10 @@ import Card from '@material-ui/core/Card'
 import Divider from '@material-ui/core/Divider'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
-import Auth from './Auth'
-import ClientId from './ClientId'
-import Code from './Code'
+import Auth from '../Auth'
+import ClientId from '../ClientId'
+import Code from '../Code'
+import Folders from '../Folders'
 import './App.css'
 
 class App extends Component {
@@ -47,6 +48,7 @@ class App extends Component {
               <Code code={this.state.code} />
             </React.Fragment>
           )}
+          <Folders />
         </Card>
       </React.Fragment>
     )
