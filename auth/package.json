@@ -24,7 +24,13 @@
     ]
   },
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
+    "babel-eslint": "^8.1.2",
+    "eslint": "^4.19.1",
+    "eslint-config-frank": "git+ssh://git@github.com/frankmoney/eslint-config-frank.git",
+    "eslint-plugin-jest": "^21.17.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.8.2",
+    "prettier": "^1.13.3",
     "react-test-renderer": "^16.3.2"
   }
 }
