@@ -17,7 +17,7 @@ class App extends Component {
 
   onClientId = id => this.setState({ clientId: id })
 
-  googleFailure = e => console.log(e)
+  googleFailure = e => console.log(e) // eslint-disable-line no-console
 
   googleSuccess = resp =>
     this.setState({

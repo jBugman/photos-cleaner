@@ -8,43 +8,51 @@ import ContentCopy from '@material-ui/icons/ContentCopy'
 import copy from 'copy-to-clipboard'
 import { withStyles } from '@material-ui/core/styles'
 
-const styles = theme => ({
+const styles = () => ({
   code: {
     display: 'inline-block',
-    marginRight: '8px' // TODO: fix hardcoded margin?
-  }
+    marginRight: '8px', // TODO: fix hardcoded margin?
+  },
 })
 
 // TODO: how to pass all props?
 // TODO: withLabel?
-const TitledIconButton = ({ label, children, onClick = null, color = 'default' }) =>
+const TitledIconButton = ({
+  label,
+  children,
+  onClick = null,
+  color = 'default',
+}) => (
   <IconButton aria-label={label} title={label} onClick={onClick} color={color}>
     {children}
   </IconButton>
+)
 
-const CopyButton = ({ label, onClick }) =>
+const CopyButton = ({ label, onClick }) => (
   <TitledIconButton label={label} onClick={onClick}>
     <ContentCopy />
   </TitledIconButton>
+)
 
-const CloseButton = ({ label, onClick }) =>
-  <TitledIconButton label={label} onClick={onClick} color='inherit' >
+const CloseButton = ({ label, onClick }) => (
+  <TitledIconButton label={label} onClick={onClick} color="inherit">
     <CloseIcon />
   </TitledIconButton>
+)
 
 class Code extends Component {
   state = {
-    snackbarOpen: false
+    snackbarOpen: false,
   }
 
-  onCopy = (e) => {
+  onCopy = () => {
     const success = copy(this.props.code)
     if (success) {
       this.setState({ snackbarOpen: true })
     }
   }
 
-  handleClose = (event, reason) => this.setState({ snackbarOpen: false })
+  handleClose = () => this.setState({ snackbarOpen: false })
 
   copyLabel = 'Copy to clipboard'
 
@@ -52,10 +60,8 @@ class Code extends Component {
     const { code, classes } = this.props
     return (
       <CardContent>
-        <Typography variant='caption'>
-          Code:
-        </Typography>
-        <Typography component='span' className={classes.code}>
+        <Typography variant="caption">Code:</Typography>
+        <Typography component="span" className={classes.code}>
           {code}
         </Typography>
         <CopyButton label={this.copyLabel} onClick={this.onCopy} />
@@ -64,7 +70,7 @@ class Code extends Component {
           onClose={this.handleClose}
           autoHideDuration={2000}
           message={<span>Copied to clipboard</span>}
-          action={<CloseButton label='Close' onClick={this.handleClose} />}
+          action={<CloseButton label="Close" onClick={this.handleClose} />}
         />
       </CardContent>
     )
