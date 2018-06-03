@@ -42,7 +42,7 @@
     "webpack-serve": "^1.0.2"
   },
   "scripts": {
-    "start": "webpack-serve --config ./webpack.config.js --no-clipboard --log-time",
-    "build": "webpack --mode development"
+    "start": "webpack-serve --config ./webpack.config.js --no-clipboard --log-time --port 3000",
+    "build": "webpack --mode production"
   }
 }
