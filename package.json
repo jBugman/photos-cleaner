@@ -1,6 +1,10 @@
 {
-  "name": "auth",
+  "name": "photos-cleaner",
   "version": "0.1.0",
+  "author": "Sergey Parshukov <codedby@bugman.me>",
+  "license": "MIT",
+  "repository": "git@github.com:jBugman/photos-cleaner.git",
+  "main": "index.jsx",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^1.1.0",
@@ -12,10 +16,14 @@
     "recompose": "^0.27.1"
   },
   "devDependencies": {
+    "@frankmoney/eslint-config-frank": "^1.0.1",
     "babel-eslint": "^8.1.2",
     "eslint": "^4.19.1",
-    "eslint-config-frank": "git+ssh://git@github.com/frankmoney/eslint-config-frank.git",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jest": "^21.17.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.8.2",
     "prettier": "^1.13.3",
